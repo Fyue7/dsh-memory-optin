@@ -1,6 +1,6 @@
 {
   "name": "dsh-memory-optin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "把「这个对话要不要进全局记忆」变成一个会话内的开关：输入框工具行里的记忆按钮 + 跨会话的全局记忆注入（非官方插件）",
   "type": "module",
   "main": "lib/index.js",
@@ -19,7 +19,7 @@
     "README.md"
   ],
   "scripts": {
-    "test": "node test/store.test.mjs",
+    "test": "node test/store.test.mjs && node test/run-injection.mjs",
     "sync": "node tools/sync.mjs"
   },
   "repository": {
