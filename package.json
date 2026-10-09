@@ -1,0 +1,61 @@
+{
+  "name": "dsh-memory-gate",
+  "version": "0.1.0",
+  "description": "把「这个对话要不要进全局记忆」变成一个会话内的开关：输入框工具行里的记忆按钮 + 跨会话的全局记忆注入（非官方插件）",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./client/index.js",
+    "./package.json": "./package.json",
+    "./cordis.patch.yml": "./cordis.patch.yml"
+  },
+  "files": [
+    "lib",
+    "client",
+    "test",
+    "tools",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node test/store.test.mjs",
+    "sync": "node tools/sync.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fyue7/dsh-memory-gate.git"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh-plugin",
+    "memory",
+    "记忆"
+  ],
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-slots",
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.4",
+    "@deepseek-ai/dsh-home-paths": ">=0.1.7-rc.2 <0.3.0-0",
+    "@deepseek-ai/dsh-system-prompt": ">=0.1.7-rc.2 <0.3.0-0",
+    "@deepseek-ai/dsh-session": ">=0.1.7-rc.2 <0.3.0-0",
+    "@deepseek-ai/dsh-llm": ">=0.1.7-rc.2 <0.3.0-0",
+    "@deepseek-ai/dsh-commands": ">=0.1.7-rc.2 <0.3.0-0",
+    "@deepseek-ai/dsh-host-webserver": ">=0.1.7-rc.2 <0.3.0-0",
+    "@deepseek-ai/schemastery": "^3.18.1"
+  }
+}
