@@ -1,5 +1,5 @@
 /**
- * dsh-memory-gate · 客户端半（输入框工具行里的记忆开关）
+ * dsh-memory-optin · 客户端半（输入框工具行里的记忆开关）
  *
  * 形态照已在跑的 dsh-emotion：`window.__ModuleLoader__.load` + 裸 ESM、
  * 无构建步骤、只注册槽位。
@@ -12,30 +12,30 @@
  */
 
 window.__ModuleLoader__.load({
-	id: 'dsh-memory-gate',
+	id: 'dsh-memory-optin',
 	factory: (require) => {
 		var module = { exports: {} };
 		var exports = module.exports;
 		var react = require('react');
 
 		var SLOT = 'conversation.input.left';
-		var API = '/memory-gate/api';
+		var API = '/memory-optin/api';
 
 		var css = [
-			'.dsmg-root{min-height:28px;display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border:0;border-radius:6px;background:0 0;cursor:pointer;font-size:12px;line-height:18px;white-space:nowrap;color:var(--dsw-alias-label-tertiary);font-variant-numeric:tabular-nums}',
-			'.dsmg-root:hover{background:var(--dsw-alias-interactive-bg-hover)}',
-			'.dsmg-root[data-on="1"]{color:var(--dsw-alias-label-primary)}',
-			'.dsmg-root[data-busy="1"],.dsmg-root[data-dead="1"]{opacity:.55;cursor:default}',
-			'.dsmg-icon{font-size:13px;line-height:1}',
-			'.dsmg-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.35}',
-			'.dsmg-root[data-on="1"] .dsmg-dot{opacity:1}',
+			'.dsmo-root{min-height:28px;display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border:0;border-radius:6px;background:0 0;cursor:pointer;font-size:12px;line-height:18px;white-space:nowrap;color:var(--dsw-alias-label-tertiary);font-variant-numeric:tabular-nums}',
+			'.dsmo-root:hover{background:var(--dsw-alias-interactive-bg-hover)}',
+			'.dsmo-root[data-on="1"]{color:var(--dsw-alias-label-primary)}',
+			'.dsmo-root[data-busy="1"],.dsmo-root[data-dead="1"]{opacity:.55;cursor:default}',
+			'.dsmo-icon{font-size:13px;line-height:1}',
+			'.dsmo-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.35}',
+			'.dsmo-root[data-on="1"] .dsmo-dot{opacity:1}',
 		].join('\n');
 
 		try {
-			if (typeof document !== 'undefined' && document.querySelector('style[data-plugin-css="dsh-memory-gate/styles"]') === null) {
+			if (typeof document !== 'undefined' && document.querySelector('style[data-plugin-css="dsh-memory-optin/styles"]') === null) {
 				var tag = document.createElement('style');
-				tag.dataset.plugin = 'dsh-memory-gate';
-				tag.dataset.pluginCss = 'dsh-memory-gate/styles';
+				tag.dataset.plugin = 'dsh-memory-optin';
+				tag.dataset.pluginCss = 'dsh-memory-optin/styles';
 				tag.textContent = css;
 				document.head.appendChild(tag);
 			}
@@ -64,7 +64,7 @@ window.__ModuleLoader__.load({
 			var useEffect = react.useEffect;
 			// hooks 拿不到就退回一个静态指示，绝不因为版本差异炸掉整个工具行
 			if (typeof useState !== 'function' || typeof useEffect !== 'function') {
-				return react.createElement('span', { className: 'dsmg-root', 'data-dead': '1' }, '记忆');
+				return react.createElement('span', { className: 'dsmo-root', 'data-dead': '1' }, '记忆');
 			}
 
 			var sessionId = pickSessionId(props);
@@ -136,7 +136,7 @@ window.__ModuleLoader__.load({
 				'button',
 				{
 					type: 'button',
-					className: 'dsmg-root',
+					className: 'dsmo-root',
 					'data-on': on ? '1' : '0',
 					'data-busy': busy ? '1' : '0',
 					'data-dead': dead ? '1' : '0',
@@ -145,9 +145,9 @@ window.__ModuleLoader__.load({
 					'aria-pressed': on ? 'true' : 'false',
 					onClick: toggle,
 				},
-				react.createElement('span', { className: 'dsmg-icon', key: 'icon' }, on ? '🧠' : '💤'),
+				react.createElement('span', { className: 'dsmo-icon', key: 'icon' }, on ? '🧠' : '💤'),
 				react.createElement('span', { key: 'label' }, label),
-				react.createElement('span', { className: 'dsmg-dot', key: 'dot' }),
+				react.createElement('span', { className: 'dsmo-dot', key: 'dot' }),
 			);
 		}
 
@@ -157,11 +157,11 @@ window.__ModuleLoader__.load({
 			if (!ctx || !ctx.slots) return;
 			try {
 				ctx.slots.inject(SLOT, function () {
-					return ctx.slots.register({ name: SLOT, id: 'memory-gate', order: 40 }, Gate);
+					return ctx.slots.register({ name: SLOT, id: 'memory-optin', order: 40 }, Gate);
 				});
 			} catch (error) {
 				try {
-					window.__dshMemoryGateError = String((error && error.message) || error);
+					window.__dshMemoryOptinError = String((error && error.message) || error);
 				} catch (_) {}
 			}
 		}

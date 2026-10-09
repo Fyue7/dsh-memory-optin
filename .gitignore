@@ -3,7 +3,7 @@ node_modules/
 pnpm-lock.yaml
 
 # ⚠️ 记忆数据绝不入库：那里面是使用者的真实对话摘要。
-# 运行期它写在 ~/.dsh/dsh-memory-gate/，这份规则只是防止有人手滑拷进仓库。
+# 运行期它写在 ~/.dsh/dsh-memory-optin/，这份规则只是防止有人手滑拷进仓库。
 memory.jsonl
 sessions.json
 

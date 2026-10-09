@@ -1,5 +1,5 @@
 {
-  "name": "dsh-memory-gate",
+  "name": "dsh-memory-optin",
   "version": "0.1.0",
   "description": "把「这个对话要不要进全局记忆」变成一个会话内的开关：输入框工具行里的记忆按钮 + 跨会话的全局记忆注入（非官方插件）",
   "type": "module",
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Fyue7/dsh-memory-gate.git"
+    "url": "git+https://github.com/Fyue7/dsh-memory-optin.git"
   },
   "engines": {
     "node": ">=22"

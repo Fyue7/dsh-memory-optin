@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2026 dsh-memory-gate contributors
+Copyright (c) 2026 dsh-memory-optin contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,10 +26,10 @@ SOFTWARE.
 
 MIT 许可**仅覆盖本仓库的源代码**。
 
-本插件运行期产生的一切数据都写在宿主用户目录下（`~/.dsh/dsh-memory-gate/`），
+本插件运行期产生的一切数据都写在宿主用户目录下（`~/.dsh/dsh-memory-optin/`），
 **不在本仓库内**，也不会被提交。那里面是使用者的真实对话摘要，属于使用者本人。
 
 The MIT license covers **source code only**. Everything this plugin produces at
-runtime lives under the host user's home directory (`~/.dsh/dsh-memory-gate/`),
+runtime lives under the host user's home directory (`~/.dsh/dsh-memory-optin/`),
 never inside this repository. Those files are the operator's own conversation
 summaries and belong to them.

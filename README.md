@@ -1,4 +1,4 @@
-# dsh-memory-gate
+# dsh-memory-optin
 
 给 DSH 加一个「这个对话要不要进全局记忆」的开关，就在输入框工具行里、权限选择器旁边。
 **默认不进**：你不点它，这个对话就不会被写进任何地方。
@@ -6,10 +6,10 @@
 ## 装上它
 
 把本仓库克隆到任意路径，然后在 DSH 的插件管理里按 `file:` 路径安装成 bundle——
-安装目标写 `file:<你的路径>/dsh-memory-gate`，装完重启 DSH。
+安装目标写 `file:<你的路径>/dsh-memory-optin`，装完重启 DSH。
 
 手动做法等价于两步：往目标 profile 的 `package.json` 里加依赖
-`"dsh-memory-gate": "file:<你的路径>/dsh-memory-gate"`，再把 `dsh-memory-gate` 加进同一个文件的
+`"dsh-memory-optin": "file:<你的路径>/dsh-memory-optin"`，再把 `dsh-memory-optin` 加进同一个文件的
 `dsh.profile.bundles` 数组，然后 `pnpm install` 并重启。
 
 装好后输入框工具行左侧会多一个「💤 记忆」按钮，默认不亮。
@@ -32,7 +32,7 @@
 ## 数据在哪
 
 ```
-~/.dsh/dsh-memory-gate/
+~/.dsh/dsh-memory-optin/
 ├── sessions.json   每个会话的开关（默认关，没打开过就不写）
 └── memory.jsonl    全局记忆，一行一条 JSON
 ```
@@ -58,7 +58,7 @@
 
 ### 出问题时看哪里
 
-`POST /memory-gate/api/debug` 会吐出链路各步的计数：
+`POST /memory-optin/api/debug` 会吐出链路各步的计数：
 
 ```json
 {"build":"diag-1","enabledIds":[],"seenSessionIds":[],"buffers":[],"routes":[],
@@ -80,7 +80,7 @@ node tools/sync.mjs    # 1. 把 lib/ 和 client/ 同步进运行时那份拷贝
 # 2. 完全退出并重开 DSH —— 进程里已加载的 ESM 模块不会被换掉
 ```
 
-判断自己是不是在对着旧代码：`/memory-gate/api/debug` 返回的 `build` 字段。
+判断自己是不是在对着旧代码：`/memory-optin/api/debug` 返回的 `build` 字段。
 它跟源码里那个常量对得上，才说明进程真的换了模块。只重启不同步、或者只同步不重启，
 两种情况都会让你看到旧行为，而且**没有任何报错**。
 
@@ -102,7 +102,7 @@ node tools/sync.mjs    # 1. 把 lib/ 和 client/ 同步进运行时那份拷贝
 - 开关**不用会话投影**：投影没有写入 API，`apply` 还必须是同步纯函数，装不下一次鼠标点击。
   所以状态由插件自己持有、按 sessionId 落盘。
 - 客户端往 `conversation.input.left` 注册；该槽位的 `standardProps` 里有 `sessionId`。
-- 客户端与宿主之间走宿主自己的两个 POST 路由（`/memory-gate/api/state`、`/set`），
+- 客户端与宿主之间走宿主自己的两个 POST 路由（`/memory-optin/api/state`、`/set`），
   不碰 typert/Remote 那一套。
 - 捕获的事件：`user/message`（只收 `source.kind === 'user'` 的，注入的 AGENTS.md 之类不算）
   与 `assistant/message`（只取 `text` 块）。

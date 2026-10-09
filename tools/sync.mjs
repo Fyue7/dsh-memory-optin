@@ -1,9 +1,9 @@
 /**
- * dsh-memory-gate · 把源码同步进运行时那份拷贝
+ * dsh-memory-optin · 把源码同步进运行时那份拷贝
  *
  * 为什么需要它：profile 的 pnpm-workspace.yaml 设了 `nodeLinker: hoisted`，
  * 本地 `file:` 依赖不是软链而是**硬链接拷贝**。于是改了 lib/ 或 client/ 之后：
- *   1. 运行时那份 node_modules\dsh-memory-gate 还是旧的（脚本负责这一步）
+ *   1. 运行时那份 node_modules\dsh-memory-optin 还是旧的（脚本负责这一步）
  *   2. 宿主进程里已加载的 ESM 模块还是旧的（只能重启，脚本只能提醒）
  *
  * 用法：node tools/sync.mjs [profileName]

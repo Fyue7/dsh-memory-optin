@@ -1,5 +1,5 @@
 /**
- * dsh-memory-gate · store 自检
+ * dsh-memory-optin · store 自检
  *
  * 跑法：node test/store.test.mjs
  * 只测纯存取逻辑，不需要宿主，不碰真数据目录。
@@ -11,7 +11,7 @@ import { join } from 'node:path';
 
 import { createMemoryStore } from '../lib/store.js';
 
-const dir = mkdtempSync(join(tmpdir(), 'dsmg-'));
+const dir = mkdtempSync(join(tmpdir(), 'dsmo-'));
 const checks = [];
 const check = (label, ok, extra = '') => checks.push(`${ok ? 'PASS' : 'FAIL'}  ${label}${extra ? `  ${extra}` : ''}`);
 
